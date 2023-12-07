@@ -62,7 +62,7 @@ export default function AddTask(props) {
                         type="text" 
                         name="taskName" 
                         id="task-name" 
-                        placeholder="Enter the task"
+                        placeholder="Enter the Task name"
                         value={task.taskName}
                         onChange={(event) => newTask(event)}
                         required/>
@@ -73,7 +73,7 @@ export default function AddTask(props) {
                         id="task-description" 
                         cols="30" 
                         rows="5" 
-                        placeholder="optional"
+                        placeholder="Optional"
                         value={task.taskDescription}
                         onChange={(event) => newTask(event)}></textarea>
 
