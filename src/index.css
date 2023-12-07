@@ -150,6 +150,9 @@ textarea {
 .delete {
   cursor: pointer;
 }
+.delete-margin {
+  margin-left: auto;
+}
 .striken {
   text-decoration: line-through;
 }

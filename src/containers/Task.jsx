@@ -21,13 +21,13 @@ export default function Task({
                     <p className="task-desc">{task.taskDescription}</p>
                 </div>
                 <i 
-                    className="fa-solid fa-pen-to-square edit"
+                    className={`fa-solid fa-pen-to-square edit ${isChecked? 'hidden': ''}`}
                     onClick={() => {
                                     showAddForm(true)
                                     findCurrentTask(task.id)}}
                 ></i>
                 <i 
-                    className="fa-solid fa-trash delete"
+                    className={`fa-solid fa-trash delete ${isChecked? 'delete-margin': ''}`}
                     onClick={() => deleteTask(task, isChecked)}
                 ></i>
             </div>          
