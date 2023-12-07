@@ -48,7 +48,6 @@ export default function AddTask(props) {
             id: '',
             taskName: '',
             taskDescription: '',
-            isChecked: false
           })
     }
 

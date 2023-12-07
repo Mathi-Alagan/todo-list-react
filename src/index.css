@@ -84,6 +84,9 @@ main::-webkit-scrollbar {
   border-radius: 5px;
   background-color: #fecece5b;
 }
+textarea {
+  resize: none;
+}
 .btns {
   display: flex;
   align-items: center;
@@ -168,6 +171,48 @@ main::-webkit-scrollbar {
 /* Mobile responsiveness */
 @media only screen and (max-width: 600px) {
   main {
-    height: 150vh;
+    width: 95vw;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .header {
+    font-size: 15px;
+    padding: 10px 0;
+  }
+  .start-page {
+    font-size: 10px;
+  }
+  .start-page button img {
+    width: 70px;
+  }
+  .tasks-list {
+    margin: 12px 0 0;
+    padding: 10px;
+  }
+
+  .task-form {
+    padding: 20px;
+  }
+  .task-name {
+    font-size: 15px;
+  }
+  .task-desc {
+    font-size: 13px;
+  }
+  .unchecked,
+  .checked {
+    font-size: 20px;
+  }
+
+  .add-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    margin: 11px 11px 0 0;
+    font-size: 20px;
+    padding: 18px;
+    border-radius: 50%;
   }
 }
