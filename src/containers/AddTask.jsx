@@ -4,15 +4,13 @@ import PropTypes from 'prop-types';
 
 //destructured the props directly
 export default function AddTask({ currentTask, showAddForm, addOrEditTask }) {
-    const [task, setTask] = useState(
-        currentTask !== null
-            ? currentTask   //conditional rendering
-            : {
-                id: uuid(),
-                taskName: '',
-                taskDescription: '',
-            }
-    );
+    const [task, setTask] = useState(() => {
+        return currentTask || {
+            id: uuid(),
+            taskName: '',
+            taskDescription: '',
+        };
+    });
 
     function handleChange(event) {
         setTask(prevTask => ({
