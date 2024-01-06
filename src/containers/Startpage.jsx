@@ -1,4 +1,3 @@
-import React from "react";
 import addImg from "../assets/Addimg.png"
 
 export default function Startpage(props) {

@@ -1,88 +1,74 @@
-import React from "react";
-import {v4 as uuid} from 'uuid';
+import { useState } from "react";
+import { v4 as uuid } from 'uuid';
+import PropTypes from 'prop-types';
 
-export default function AddTask(props) {
-
-
-    // initializing the new task or the task to be edited
-    const [task, setTask] = React.useState(
-        
-        (props.currentTask !=null) ? 
-        
-        props.currentTask :        
-        
-        {
-        id: uuid(),
-        taskName: '',
-        taskDescription: '',
-        }
-)
-
-
-
-    //updates task state
-
-    function newTask(event) {
-        setTask(prevTask => {
-            return {
-                ...prevTask,
-                [event.target.name]: event.target.value
-            }
-            })
-        
-        console.log(task)
-    }
-
-    
-    //send the newly updated task to the App component, and re-initializing the task state
-
-    function pushTask(event) {
-        
-        event.preventDefault()
-
-        props.showAddForm(false)
-
-        props.addOrEditTask(task)
-
-        setTask({
-            id: '',
+//destructured the props directly
+export default function AddTask({ currentTask, showAddForm, addOrEditTask }) {
+    const [task, setTask] = useState(() => {
+        return currentTask || {
+            id: uuid(),
             taskName: '',
             taskDescription: '',
-          })
+        };
+    });
+
+    function handleChange(event) {
+        setTask(prevTask => ({
+            ...prevTask,
+            [event.target.name]: event.target.value
+        }));
     }
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        showAddForm(false);
+        addOrEditTask(task);
+        setTask({
+            id: uuid(),
+            taskName: '',
+            taskDescription: '',
+        });
+    }
 
     return (
-        <div className=" backdrop ">
+        <div className="backdrop">
             <div className="add-task">
-                <form action="#" className="task-form" onSubmit={(e)=>pushTask(e)}>
+                <form action="#" className="task-form" onSubmit={handleSubmit}>
                     <label htmlFor="task-name">Task</label>
-                    <input 
-                        type="text" 
-                        name="taskName" 
-                        id="task-name" 
+                    <input
+                        type="text"
+                        name="taskName"
+                        id="task-name"
                         placeholder="Enter the Task name"
                         value={task.taskName}
-                        onChange={(event) => newTask(event)}
-                        required/>
+                        onChange={handleChange}
+                        required
+                    />
 
-                    <label htmlFor="task-name">Description</label>
-                    <textarea 
-                        name="taskDescription" 
-                        id="task-description" 
-                        cols="30" 
-                        rows="5" 
+                    <label htmlFor="task-description">Description</label>
+                    <textarea
+                        name="taskDescription"
+                        id="task-description"
+                        cols="30"
+                        rows="5"
                         placeholder="Optional"
                         value={task.taskDescription}
-                        onChange={(event) => newTask(event)}></textarea>
+                        onChange={handleChange}
+                    ></textarea>
 
                     <div className="btns">
                         <button type="submit">Add</button>
-                        <button onClick={()=>props.showAddForm(false)}>Cancel</button>
+                        <button onClick={() => showAddForm(false)}>Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
-
-    )
+    );
 }
+
+//add prop types validation
+AddTask.propTypes = {
+    currentTask: PropTypes.object,
+    showAddForm: PropTypes.func.isRequired,
+    addOrEditTask: PropTypes.func.isRequired,
+};
